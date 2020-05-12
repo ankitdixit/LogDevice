@@ -22,8 +22,9 @@ bool Listener::isSSL() const {
   return iface_.isSSL();
 }
 
-Listener::Listener(const InterfaceDef& iface, KeepAlive loop)
-    : iface_(iface), loop_(loop) {
+Listener::
+Listener(const InterfaceDef& iface, KeepAlive loop, bool use_client_provided_tos)
+    : iface_(iface), loop_(loop), use_client_provided_tos_(use_client_provided_tos){
   ld_info("Created Listener: %s", iface.describe().c_str());
 }
 
@@ -67,7 +68,7 @@ bool Listener::setupAsyncSocket() {
     socket->addAcceptCallback(this, nullptr);
     socket->listen(128);
 
-    if (socket->getAddress().getFamily() != AF_UNIX) {
+    if (use_client_provided_tos_ && socket->getAddress().getFamily() != AF_UNIX) {
       socket->setTosReflect(true);
     }
 

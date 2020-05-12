@@ -1154,6 +1154,9 @@ struct Settings : public SettingsBundle {
   // Default DSCP value for client sockets at the Sender.
   uint8_t client_dscp_default;
 
+  // Decided whether to honor client provided DSCP values
+  uint8_t dscp_reflection_enabled;
+
   // Disable trimming the event log.
   bool disable_event_log_trimming;
 

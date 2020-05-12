@@ -582,6 +582,14 @@ void ServerSettings::defineSettings(SettingEasyInit& init) {
      SERVER | REQUIRES_RESTART,
      SettingsCategory::Configuration)
 
+    ("use-client-provided-tos",
+     &use_client_provided_tos,
+     "true",
+     nullptr,
+     "If enabled, server will use DSCP TypeOfService used by client for communicationo"
+     "If disabled, server will use default DSCP value ",
+     SERVER | REQUIRES_RESTART,
+     SettingsCategory::Configuration)
     ;
   // clang-format on
 

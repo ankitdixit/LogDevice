@@ -29,8 +29,9 @@ ConnectionListener::ConnectionListener(
     KeepAlive loop,
     std::shared_ptr<SharedState> shared_state,
     ListenerType listener_type,
-    ResourceBudget& connection_backlog_budget)
-    : Listener(std::move(iface), loop),
+    ResourceBudget& connection_backlog_budget,
+    bool use_client_provided_tos)
+    : Listener(std::move(iface), loop, use_client_provided_tos),
       loop_(loop),
       connection_backlog_budget_(connection_backlog_budget),
       shared_state_(shared_state),
