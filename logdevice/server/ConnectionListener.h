@@ -56,7 +56,8 @@ class ConnectionListener : public Listener {
                               KeepAlive loop,
                               std::shared_ptr<SharedState> shared_state,
                               ListenerType listener_type,
-                              ResourceBudget& connection_backlog_budget);
+                              ResourceBudget& connection_backlog_budget,
+                              bool use_client_provided_tos);
 
   void setProcessor(Processor* processor) {
     processor_ = processor;
